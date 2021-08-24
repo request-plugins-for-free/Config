@@ -58,7 +58,8 @@ public final class ConfigAPI {
      * @exception IllegalStateException if configuration instance is not set
      */
     public static void example(){
-        if (configuration == null){
+        final ConfigIdentifier config = get("config");
+        if (config == null){
             throw new IllegalStateException("Configuration instance cannot be null");
         }
         final String string = ConfigAPI.get("config", "string", ConfigType.STRING);
