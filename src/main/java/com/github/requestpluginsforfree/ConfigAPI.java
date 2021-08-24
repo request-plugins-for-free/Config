@@ -28,7 +28,7 @@ public final class ConfigAPI {
      */
     public static ConfigIdentifier get(final String identifier){
         for (final ConfigIdentifier configIdentifier : identifiers){
-            if (configIdentifier.getIdentifier().equals(identifier)) return configIdentifier;
+            if (configIdentifier.getIdentifier().equalsIgnoreCase(identifier)) return configIdentifier;
         }
         return null;
     }
