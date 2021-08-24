@@ -1,19 +1,36 @@
 package com.github.requestpluginsforfree;
 
 import com.github.requestpluginsforfree.type.config.ConfigType;
+import com.github.requestpluginsforfree.type.identifier.ConfigIdentifier;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public final class ConfigAPI {
-    private static FileConfiguration configuration;
+    private static List<ConfigIdentifier> identifiers = new ArrayList<>();
 
     /**
-     * Sets the FileConfiguration instance, to gather information from the config
+     * Adds the identifier to list
      *
-     * @param configuration FileConfiguration instance
+     * @param identifiers the config identifier
      * @apiNote Be aware that if the config reloads, you'll need to re-execute this command or else it'll use the old instance of Configuration.
      */
-    public static void initialize(final FileConfiguration configuration){
-        ConfigAPI.configuration = configuration;
+    public static void initialize(final ConfigIdentifier... identifiers){
+        ConfigAPI.identifiers.addAll(Arrays.asList(identifiers));
+    }
+
+    /**
+     * @param identifier config identifier
+     *
+     * @return If it's found ConfigIdentifier instance, otherwise null
+     */
+    public static ConfigIdentifier get(final String identifier){
+        for (final ConfigIdentifier configIdentifier : identifiers){
+            if (configIdentifier.getIdentifier().equals(identifier)) return configIdentifier;
+        }
+        return null;
     }
 
     /**
@@ -27,11 +44,12 @@ public final class ConfigAPI {
      *
      * @exception IllegalStateException if configuration instance is not set
      */
-    public static <T> T get(final String input, final ConfigType<?> type){
-        if (configuration == null){
+    public static <T> T get(final String identifier, final String input, final ConfigType<?> type){
+        final ConfigIdentifier config = get(identifier);
+        if (config == null){
             throw new IllegalStateException("Configuration instance cannot be null");
         }
-        return (T) type.to(configuration.get(input));
+        return (T) type.to(config.configuration().get(input));
     }
 
     /**
@@ -43,8 +61,8 @@ public final class ConfigAPI {
         if (configuration == null){
             throw new IllegalStateException("Configuration instance cannot be null");
         }
-        final String string = ConfigAPI.get("string", ConfigType.STRING);
-        final Integer integer = ConfigAPI.get("integer", ConfigType.INTEGER);
+        final String string = ConfigAPI.get("config", "string", ConfigType.STRING);
+        final Integer integer = ConfigAPI.get("config", "integer", ConfigType.INTEGER);
         System.out.println("string: " + string);
         System.out.println("integer: " + integer);
     }
