@@ -1,8 +1,8 @@
-package com.github.requestpluginsforfree.type.config;
+package com.github.requestpluginsforfree.config.type.config;
 
-import com.github.requestpluginsforfree.type.Type;
-import com.github.requestpluginsforfree.type.extend.TypeInteger;
-import com.github.requestpluginsforfree.type.extend.TypeString;
+import com.github.requestpluginsforfree.config.type.Type;
+import com.github.requestpluginsforfree.config.type.extend.TypeInteger;
+import com.github.requestpluginsforfree.config.type.extend.TypeString;
 
 public class ConfigType<T> {
     public static final ConfigType<String> STRING = new ConfigType<>(new TypeString());

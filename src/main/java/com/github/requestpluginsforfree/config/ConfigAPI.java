@@ -1,8 +1,7 @@
-package com.github.requestpluginsforfree;
+package com.github.requestpluginsforfree.config;
 
-import com.github.requestpluginsforfree.type.config.ConfigType;
-import com.github.requestpluginsforfree.type.identifier.ConfigIdentifier;
-import org.bukkit.configuration.file.FileConfiguration;
+import com.github.requestpluginsforfree.config.type.config.ConfigType;
+import com.github.requestpluginsforfree.config.type.identifier.ConfigIdentifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;

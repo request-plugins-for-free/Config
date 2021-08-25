@@ -1,4 +1,4 @@
-package com.github.requestpluginsforfree.type.identifier;
+package com.github.requestpluginsforfree.config.type.identifier;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

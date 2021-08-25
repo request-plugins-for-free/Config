@@ -1,4 +1,4 @@
-package com.github.requestpluginsforfree.type;
+package com.github.requestpluginsforfree.config.type;
 
 public interface Type<T> {
     /**

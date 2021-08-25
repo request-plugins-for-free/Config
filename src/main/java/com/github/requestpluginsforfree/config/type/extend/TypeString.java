@@ -1,6 +1,6 @@
-package com.github.requestpluginsforfree.type.extend;
+package com.github.requestpluginsforfree.config.type.extend;
 
-import com.github.requestpluginsforfree.type.Type;
+import com.github.requestpluginsforfree.config.type.Type;
 
 public class TypeString implements Type<String> {
 
