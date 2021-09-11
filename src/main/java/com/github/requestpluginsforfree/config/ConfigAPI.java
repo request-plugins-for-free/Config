@@ -52,6 +52,25 @@ public final class ConfigAPI {
     }
 
     /**
+     * This will retrieve the output by Spigot's default configuration get method
+     *
+     * @param input input path
+     * @param defaultValue the default value
+     * @param <T> the return type
+     *
+     * @return the output, otherwise the defaultValue
+     *
+     * @exception IllegalStateException if configuration instance is not set
+     */
+    public static <T> T get(final String identifier, final T defaultValue, final String input){
+        final ConfigIdentifier config = get(identifier);
+        if (config == null){
+            throw new IllegalStateException("Configuration instance cannot be null");
+        }
+        return (T) config.configuration().get(input, defaultValue);
+    }
+
+    /**
      * The example (ctrl + click to see the code), be sure to set the FileConfiguration instance set!
      *
      * @exception IllegalStateException if configuration instance is not set
